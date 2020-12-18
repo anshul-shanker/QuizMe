@@ -1,6 +1,6 @@
 // Constants
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 10;
 
 const question = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName("choice-text"));
@@ -18,8 +18,8 @@ let availableQuestions = [];
 
 let questions = [];
 
-// Promises fetch 
-fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
+// Promises fetch https://opentdb.com/api.php?amount=10&category=9&type=multiple
+fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple")
   .then(res => {
     return res.json();
   })
