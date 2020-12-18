@@ -35,13 +35,12 @@ let questions = [
 ];
 
 // Constants
-
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
 
 // IN the () braces the params go if any
 startGame = () => {
-  questionCounter = 3;
+  questionCounter = 0;
   // Not directly assigned since if one changes the other would change as well.
   // Thats why using spread operator ...
   availableQuestions = [...questions]
@@ -49,7 +48,7 @@ startGame = () => {
 }
 
 getNewQuestion = () => {
-  if(availableQuestions.length == 0 || questionCounter >= MAX_QUESTIONS){
+  if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS){
     // Go to the end page or new category for later.
     return window.location.assign('/end.html');
   }
@@ -58,7 +57,6 @@ getNewQuestion = () => {
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   
-  console.log(currentQuestion);
   question.innerText = currentQuestion.question;
 
   choices.forEach( choice => {
@@ -76,8 +74,16 @@ choices.forEach(choice => {
 
     acceptingAnswers = false;
     const selectedChoice = e.target;
-    const slectedAnswer = selectedChoice.dataset['number'];
-    getNewQuestion();
+    const selectedAnswer = selectedChoice.dataset['number'];
+
+    const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+   
+    selectedChoice.parentElement.classList.add(classToApply);
+
+    setTimeout( () => {
+      selectedChoice.parentElement.classList.remove(classToApply);
+      getNewQuestion();
+    }, 1000)
   })
 })
 
