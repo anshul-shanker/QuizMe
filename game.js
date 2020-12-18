@@ -65,7 +65,7 @@ getNewQuestion = () => {
     // setting value for high score
     localStorage.setItem('mostRecentScore', score);
     // Go to the end page or new category for later.
-    return window.location.assign('/end.html');
+    return window.location.assign('end.html');
   }
 
   questionCounter++;
