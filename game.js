@@ -1,8 +1,14 @@
+// Constants
+const CORRECT_BONUS = 10;
+const MAX_QUESTIONS = 5;
+
 const question = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const progressText = document.getElementById('progressText');
 const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
+const loader = document.getElementById('loader');
+const game = document.getElementById('game');
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -38,7 +44,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=mul
     console.log(formattedQuestion);
     return formattedQuestion;
   })
-
+  
   // questions = loadedQuestions;
   startGame();
 })
@@ -46,9 +52,7 @@ fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=mul
   console.error(err);
 });
 
-// Constants
-const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 5;
+
 
 // IN the () braces the params go if any
 startGame = () => {
@@ -57,6 +61,11 @@ startGame = () => {
   // Thats why using spread operator ...
   availableQuestions = [...questions]
   getNewQuestion();
+  setTimeout( () => {
+    game.classList.remove("hidden");
+    loader.classList.add("hidden");
+  }, 2150)
+  
 }
 
 // When fetching the question and options
