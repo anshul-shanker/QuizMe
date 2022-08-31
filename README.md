@@ -2,4 +2,4 @@
 
 A client side project which asks users trivia questions
 
-https://ashanker90.github.io/QuizMe
+https://anshul-shanker.github.io/QuizMe
