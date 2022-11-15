@@ -19,7 +19,7 @@ let availableQuestions = [];
 let questions = [];
 
 // Promises fetch https://opentdb.com/api.php?amount=10&category=9&type=multiple
-fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple")
+fetch("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple")
   .then(res => {
     return res.json();
   })
